@@ -2,8 +2,9 @@ var express = require('express');
 var fs = require('fs');
 var app = express();
 
-app.get('/', function(req, res) {
-    fs.readFile(process.argv[3], function(data) {
+app.get('/books', function(req, res) {
+    fs.readFile(process.argv[3], function(err, data) {
+        if (err) throw err;
         var object = JSON.parse(data);
         res.json(object);
     });
